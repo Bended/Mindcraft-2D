@@ -1,0 +1,26 @@
+ body{
+    margin:0px;
+    padding:0px;
+    display:inline-block;
+}
+
+
+ .cell{
+    width: 30px;
+    height: 30px;
+    background-color: #91C1FC;
+    display: inline-block;
+    background-size: cover;
+ }
+
+ .cell:hover{
+    border:1px solid black;
+ }
+
+
+#canvas{
+    width: 600px;
+    line-height: 0;
+    display:inline-block;
+    margin-left: 30%;
+    margin-top:2%;
