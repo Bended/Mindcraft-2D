@@ -4,7 +4,6 @@
     display:inline-block;
 }
 
-
  .cell{
     width: 30px;
     height: 30px;
@@ -14,9 +13,8 @@
  }
 
  .cell:hover{
-    border:1px solid black;
+    border:1px solid white;
  }
-
 
 #canvas{
     width: 600px;
@@ -24,3 +22,8 @@
     display:inline-block;
     margin-left: 30%;
     margin-top:2%;
+
+.grass{
+    background-image: url('../images/dirt.png');
+
+}
