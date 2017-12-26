@@ -43,8 +43,24 @@ for (var i = 0; i < world.matrix.length; i++) {
 
 world.createWorld();
 
+world.cells = $('.cell');
 
-var sel = $("div[line='19']");
-sel.css("background-color", "yellow");
+world.updateBoard = function () {
+    world.cells
+        .removeClass("grass")
+        .removeClass("dirt")
+        .removeClass("tree")
+        .removeClass("leaf")
+        .removeClass("mario")
+        .removeClass("rock");
 
+    for (var i = 0; i < world.matrix.length; i++) {
+        for (var j = 0; j < world.matrix[i].length; j++) {
+            world.cells.eq(i * 20 + j).addClass(world.matrix[i][j]);
+        }
+    }
+};
+
+thisCell = world.matrix[1][1];
+thisCell.addClass('green');
 

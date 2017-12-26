@@ -24,6 +24,7 @@
     margin-top:2%;
 
 .grass{
-    background-image: url('../images/dirt.png');
+
+    background-color: green;
 
 }
