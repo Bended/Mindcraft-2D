@@ -1,7 +1,7 @@
 var world = {};
 var  sizeOfTheWorld = 20;
 
-function callback(e) {
+function clickedBox(e) {
     var line = $(this).data('line')
     var col = $(this).data('col')
     console.log("  line:" + line + "  column:" + col);
@@ -33,7 +33,7 @@ for (var i = 0; i < world.matrix.length; i++) {
                         .data('line', i)        //add line number
                         .data('col', j);       //add colomn number
             $('#canvas').append(box);
-            box.on('click', callback);
+            box.on('click', clickedBox);
         }
     }
 }
@@ -89,25 +89,19 @@ world.cloud = function (line, col) {
 //function to draw the tree
 world.tree = function(line,col) {
         world.matrix[line][col] = 'tree';
-        world.matrix[line][col+1] = 'tree';
         world.matrix[line-1][col] = 'tree';
-        world.matrix[line-1][col+1] = 'tree';
         world.matrix[line-2][col] = 'tree';
-        world.matrix[line-2][col+1] = 'tree';
         world.matrix[line-3][col] = 'tree';
-        world.matrix[line-3][col+1] = 'tree';
-        world.matrix[line-4][col] = 'tree';
-        world.matrix[line-4][col+1] = 'tree';
+        world.matrix[line-4][col] = 'leef';
+        world.matrix[line-4][col+1] = 'leef';
+        world.matrix[line-5][col-1] = 'leef';
+        world.matrix[line-5][col+2] = 'leef';
         world.matrix[line-5][col] = 'leef';
         world.matrix[line-5][col+1] = 'leef';
         world.matrix[line-5][col-1] = 'leef';
-        world.matrix[line-5][col+2] = 'leef';
         world.matrix[line-6][col] = 'leef';
         world.matrix[line-6][col+1] = 'leef';
-        world.matrix[line-6][col-1] = 'leef';
-        world.matrix[line-6][col+2] = 'leef';
-        world.matrix[line-7][col] = 'leef';
-        world.matrix[line-7][col+1] = 'leef';
+        world.matrix[line-4][col-1] = 'leef';
 }
 
 world.rock = function(col) {
