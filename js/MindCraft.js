@@ -7,7 +7,7 @@ var rockCounter = 0;
 var dirtCounter = 0;
 var tempMaterial;
 
-world.selectedTool = 'axe'
+world.selectedTool = 'shovel'
 
 function clickedBox(e) {
     var line = $(this).data('line')
@@ -16,16 +16,48 @@ function clickedBox(e) {
     var cl = $(this).attr('class');
     console.log(cl);
 
-// If the selected tool is an AXE
+// If TOOL is an AXE
     if (world.selectedTool === 'axe') {
         if (world.matrix[line][col] === 'tree' || world.matrix[line][col] === 'leef') {
             tempMaterial = world.matrix[line][col];
             world.updateCounter(tempMaterial);
             world.matrix[line][col] = "";
-            console.log(treeCounter);
-            console.log(leefCounter);
-        }
+            console.log('tree: ' + treeCounter);
+            console.log('leef: ' + leefCounter);
+        } //else {$('#axeButton').css("background-color", "red");
     }
+
+//If TOOL is an PICK AXE
+    if (world.selectedTool === 'pickAxe') {
+        if (world.matrix[line][col] === 'rock') {
+            tempMaterial = world.matrix[line][col];
+            world.updateCounter(tempMaterial);
+            world.matrix[line][col] = "";
+            console.log('rock : ' + rockCounter);
+        }   //else {$('#axeButton').css("background-color", "red");
+    }
+
+    //If TOOL is an SHOVEL
+    if (world.selectedTool === 'shovel') {
+        if (world.matrix[line][col] === 'grass' || world.matrix[line][col] === 'dirt') {
+            tempMaterial = world.matrix[line][col];
+            world.updateCounter(tempMaterial);
+            world.matrix[line][col] = "";
+            console.log('dirt : ' + dirtCounter);
+            console.log('grass : ' + grassCounter);
+
+        }   //else {$('#axeButton').css("background-color", "red");
+    }
+
+
+world.selectedElement = 'grass';                        //MUST CHANGE WHEN WE CLICK AN ELEMENT
+
+
+world.placeElement = function (e) {
+
+
+}
+
 
 world.updateBoard();
 }
@@ -65,7 +97,7 @@ for (var i = 0; i < world.matrix.length; i++) {
             var box = $('<div/>')
                         .addClass('cell')
                         .data('line', i)        //add line number
-                        .data('col', j);       //add colomn number
+                        .data('col', j);       //add column number
             $('#canvas').append(box);
             box.on('click', clickedBox);
         }
@@ -138,6 +170,7 @@ world.tree = function(line,col) {
         world.matrix[line-4][col-1] = 'leef';
 }
 
+//Draw a bush
 world.bush = function(col) {
         world.matrix[15][col] = 'leef';
         world.matrix[15][col+1] = 'leef';
@@ -147,6 +180,7 @@ world.bush = function(col) {
         world.matrix[14][col+2] = 'leef';
 }
 
+//Draw a rock
 world.rock = function(col) {
         world.matrix[15][col] = 'rock';
         world.matrix[15][col+1] = 'rock';
