@@ -1,13 +1,13 @@
 var world = {};
 var sizeOfTheWorld = 20;
-var treeCounter = 0;
-var leefCounter = 0;
+var treeCounter = 2;
+var leefCounter = 4;
 var grassCounter = 0;
 var rockCounter = 0;
 var dirtCounter = 0;
 var tempMaterial;
 
-world.selectedTool = 'shovel'
+world.selectedElement = 'axe'               //create the function to get the element from the board
 
 function clickedBox(e) {
     var line = $(this).data('line')
@@ -17,7 +17,7 @@ function clickedBox(e) {
     console.log(cl);
 
 // If TOOL is an AXE
-    if (world.selectedTool === 'axe') {
+    if (world.selectedElement === 'axe') {
         if (world.matrix[line][col] === 'tree' || world.matrix[line][col] === 'leef') {
             tempMaterial = world.matrix[line][col];
             world.updateCounter(tempMaterial);
@@ -28,7 +28,7 @@ function clickedBox(e) {
     }
 
 //If TOOL is an PICK AXE
-    if (world.selectedTool === 'pickAxe') {
+    if (world.selectedElement === 'pickAxe') {
         if (world.matrix[line][col] === 'rock') {
             tempMaterial = world.matrix[line][col];
             world.updateCounter(tempMaterial);
@@ -37,8 +37,8 @@ function clickedBox(e) {
         }   //else {$('#axeButton').css("background-color", "red");
     }
 
-    //If TOOL is an SHOVEL
-    if (world.selectedTool === 'shovel') {
+//If TOOL is an SHOVEL
+    if (world.selectedElement === 'shovel') {
         if (world.matrix[line][col] === 'grass' || world.matrix[line][col] === 'dirt') {
             tempMaterial = world.matrix[line][col];
             world.updateCounter(tempMaterial);
@@ -49,17 +49,34 @@ function clickedBox(e) {
         }   //else {$('#axeButton').css("background-color", "red");
     }
 
+// IF Selected Element is an Element --> place it
+    if ((world.selectedElement === 'grass' && grassCounter > 0) || (world.selectedElement === 'rock' && rockCounter > 0)
+            || (world.selectedElement === 'dirt' && dirtCounter > 0) || (world.selectedElement === 'tree' && treeCounter > 0)
+            || (world.selectedElement === 'leef' && leefCounter > 0)) {
+        if (world.matrix[line][col] === '') {
+            world.matrix[line][col] = world.selectedElement
+                if (world.selectedElement === 'grass'){
+                        grassCounter--;}
+                    else if (world.selectedElement === 'rock'){
+                        rockCounter--;}
+                            else if (world.selectedElement === 'dirt'){
+                                dirtCounter--;}
+                                    else if (world.selectedElement === 'tree'){
+                                        treeCounter--;}
+                                            else if (world.selectedElement === 'leef'){
+                                                leefCounter--;}
 
-world.selectedElement = 'grass';                        //MUST CHANGE WHEN WE CLICK AN ELEMENT
+                }
+    }
 
-
-world.placeElement = function (e) {
-
-
-}
-
+console.log('dirt ' + dirtCounter);
+console.log('grass ' + grassCounter);
+console.log('rock ' + rockCounter);
+console.log('tree ' + treeCounter);
+console.log('leef ' + leefCounter);
 
 world.updateBoard();
+
 }
 
 world.updateCounter = function(tempMaterial) {
@@ -76,7 +93,6 @@ world.updateCounter = function(tempMaterial) {
 }
 
 //create an Array of Array (20 x 20) and set the value to ""
-
 world.createWorld = function()  {
 
 world.matrix = new Array(sizeOfTheWorld);
