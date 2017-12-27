@@ -22,9 +22,28 @@
     display:inline-block;
     margin-left: 30%;
     margin-top:2%;
+}
+
+.dirt{
+    background-image: url('../images/dirt.png');
+}
 
 .grass{
+    background-image: url('../images/grass.png');
+}
 
-    background-color: green;
+.cloud{
+    background-color:white;
+}
 
+.cell.tree{
+    background-image: url('../images/tree.png');
+}
+
+.leef{
+    background-image: url('../images/leaf.png');
+}
+
+.rock{
+    background-image: url('../images/rock.png');
 }
