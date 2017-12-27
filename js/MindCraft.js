@@ -1,5 +1,13 @@
 var world = {};
-var  sizeOfTheWorld = 20;
+var sizeOfTheWorld = 20;
+var treeCounter = 0;
+var leefCounter = 0;
+var grassCounter = 0;
+var rockCounter = 0;
+var dirtCounter = 0;
+var tempMaterial;
+
+world.selectedTool = 'axe'
 
 function clickedBox(e) {
     var line = $(this).data('line')
@@ -7,6 +15,32 @@ function clickedBox(e) {
     console.log("  line:" + line + "  column:" + col);
     var cl = $(this).attr('class');
     console.log(cl);
+
+// If the selected tool is an AXE
+    if (world.selectedTool === 'axe') {
+        if (world.matrix[line][col] === 'tree' || world.matrix[line][col] === 'leef') {
+            tempMaterial = world.matrix[line][col];
+            world.updateCounter(tempMaterial);
+            world.matrix[line][col] = "";
+            console.log(treeCounter);
+            console.log(leefCounter);
+        }
+    }
+
+world.updateBoard();
+}
+
+world.updateCounter = function(tempMaterial) {
+    if (tempMaterial === 'leef') {
+        leefCounter++}
+        else if (tempMaterial === 'tree') {
+            treeCounter++}
+            else if (tempMaterial === 'rock') {
+            rockCounter++}
+                else if (tempMaterial === 'dirt') {
+                dirtCounter++}
+                    else if (tempMaterial === 'grass') {
+                    grassCounter++}
 }
 
 //create an Array of Array (20 x 20) and set the value to ""
@@ -47,7 +81,7 @@ world.updateBoard = function () {
         .removeClass("grass")
         .removeClass("dirt")
         .removeClass("tree")
-        .removeClass("leaf")
+        .removeClass("leef")
         .removeClass("rock");
 
     for (var i = 0; i < world.matrix.length; i++) {
@@ -104,16 +138,18 @@ world.tree = function(line,col) {
         world.matrix[line-4][col-1] = 'leef';
 }
 
+world.bush = function(col) {
+        world.matrix[15][col] = 'leef';
+        world.matrix[15][col+1] = 'leef';
+        world.matrix[15][col+2] = 'leef';
+        world.matrix[15][col+3] = 'leef';
+        world.matrix[14][col+1] = 'leef';
+        world.matrix[14][col+2] = 'leef';
+}
+
 world.rock = function(col) {
         world.matrix[15][col] = 'rock';
         world.matrix[15][col+1] = 'rock';
-        world.matrix[15][col+2] = 'rock';
-        world.matrix[15][col+3] = 'rock';
-        world.matrix[14][col+1] = 'rock';
-        world.matrix[14][col+2] = 'rock';
-        world.matrix[14][col+3] = 'rock';
-        world.matrix[13][col+1] = 'rock';
-        world.matrix[13][col+2] = 'rock';
 }
 
 
@@ -123,7 +159,9 @@ world.dirt();
 world.cloud(5,5);
 world.cloud(3,15);
 world.tree(15, 14)
-world.rock(4);
+world.bush(4);
+world.rock(17);
+world.rock(10);
 world.updateBoard();
 })
 
