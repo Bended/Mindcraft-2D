@@ -7,7 +7,7 @@ var rockCounter = 0;
 var dirtCounter = 0;
 var tempMaterial;
 
-world.selectedElement = 'axe'               //create the function to get the element from the board
+world.selectedElement = 'axe';             //create the function to get the element from the board
 
 function clickedBox(e) {
     var line = $(this).data('line')

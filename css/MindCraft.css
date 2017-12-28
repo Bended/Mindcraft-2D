@@ -51,11 +51,104 @@
 
 .toolBox{
     background-color: black;
-    line-height: 0;
-    width: 100px;
-    height: 101%;
+    width: 150px;
+    height: 600px;
     display: inline-block;
     float:right;
     position: absolute;
     margin-top: 12px;
 }
+
+.tools{
+    margin: 7% 30%;
+    width: 60px;
+    height: 60px;
+    background-color: black;
+    border:1px solid white;
+    background-size: contain;
+}
+
+#axe{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 50px;
+    background-image: url('../images/axe.png');
+}
+
+#pickAxe{  
+    background-image: url('../images/pickaxe.png');
+}
+
+#shovel{
+    background-image: url('../images/shovel.png');
+}
+#sceau{
+    background-image: url('../images/bucket.png');
+}
+
+
+.material{
+    margin-left: 13%;
+    width: 55px;
+    height: 55px;
+    background-color: black;
+    border:1px solid white;
+    display: inline-block;
+    background-size: contain;
+}
+
+
+.R1{
+    margin-top: 10px;
+} 
+
+.C2{
+    margin-left: 0;
+}
+
+#terre{
+    background-image: url('../images/dirt.png');
+}
+#herbe{
+    background-image: url('../images/grass.png');
+}
+#feuille{
+    background-image: url('../images/leaf.png');
+}
+#bois{
+    background-image: url('../images/tree.png');
+}
+#roche{
+    background-image: url('../images/rock.png');
+}
+#eau{
+    background-image: url('../images/eau.jpeg');
+    background-repeat: no-repeat;
+}
+#feu{
+    background-image: url('../images/fire.png');
+    background-repeat: no-repeat;
+}
+#goku{
+    background-image: url('../images/goku.png');
+   
+}
+.reset{
+    background-color: black;
+    border: 1px solid white;
+    width: 86%;
+    height: 30px;    
+    margin: 5% 9%;
+    color: white;
+    font-family: '8BITWONDERNominal'; 
+    font-size: 11px;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 5px;
+
+
+
+
+
+
+
