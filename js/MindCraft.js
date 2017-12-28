@@ -10,7 +10,7 @@ var fireCounter = 3;
 var tempMaterial;
 
 //world.selectedElement = 'axe';             //create the function to get the element from the board
-world.selectedElement = 'water';               //create the function to get the element from the board
+world.selectedElement = 'rock';               //create the function to get the element from the board
 
 function clickedBox(e) {
     var line = $(this).data('line');
@@ -92,9 +92,11 @@ function clickedBox(e) {
         if (world.matrix[line][col] === 'tree' || world.matrix[line][col] === 'leef'
         || world.matrix[line][col] === 'grass' || world.matrix[line][col] === 'dirt') {
             world.matrix[line][col] = 'fire';
-            fireCounter--
+            fireCounter--;
             }
         }
+
+world.fall(world.selectedElement, line, col);
 
 console.log('dirt ' + dirtCounter);
 console.log('grass ' + grassCounter);
@@ -174,7 +176,6 @@ world.updateBoard = function () {
         }                                                            //eq enable to identify an element with its index
     }
 };
-
 
 //function to draw the dirt
 world.dirt = function () {
