@@ -6,7 +6,7 @@ var grassCounter = 0;
 var rockCounter = 0;
 var dirtCounter = 0;
 var waterCounter = 4;
-var fireCounter = 3;
+var fireCounter = 4;
 var tempMaterial;
 
 world.selectedElement = selectedTool();
@@ -25,9 +25,6 @@ function selectedTool(){
     $('#feu').on("click", (function(e){world.selectedElement = "fire"}));
 
 };
-
-
-
 
 function clickedBox(e) {
     var line = $(this).data('line');
@@ -113,7 +110,11 @@ function clickedBox(e) {
             }
         }
 
-world.fall(world.selectedElement, line, col);
+//console.log(world.selectedElement);
+//console.log(line);
+//console.log(col);
+
+//world.fall(line, col);
 
 console.log('dirt ' + dirtCounter);
 console.log('grass ' + grassCounter);
@@ -124,8 +125,18 @@ console.log('water ' + waterCounter);
 console.log('fire ' + fireCounter);
 
 world.updateBoard();
-
 }
+
+//world.fall = function (line, col) {
+//    for (var i = line; i < 20; i++) {
+//        console.log(line);
+//        if (world.matrix[line + i][col] !== '') {
+//            world.matrix[line + i - 1][col] = world.selectedElement;
+//            //setTimeout(world.updateBoard(), 300);
+//            }
+//    }
+//}
+
 
 world.updateCounter = function(tempMaterial) {
     if (tempMaterial === 'leef') {
@@ -147,10 +158,10 @@ world.updateCounter = function(tempMaterial) {
 //create an Array of Array (20 x 20) and set the value to ""
 world.createWorld = function()  {
 
-world.matrix = new Array(sizeOfTheWorld);
+world.matrix = new Array(20);
 
 for (var i = 0; i < world.matrix.length; i++){
-        world.matrix[i] = new Array(sizeOfTheWorld);
+        world.matrix[i] = new Array(20);
 }
 
 for (var x = 0; x < world.matrix.length; x++) {
@@ -192,6 +203,15 @@ world.updateBoard = function () {
             world.boxes.eq(i * 20 + j).addClass(world.matrix[i][j]); //map the cells to the matrix
         }                                                            //eq enable to identify an element with its index
     }
+
+$('#terre').html(dirtCounter);
+$('#herbe').html(grassCounter);
+$('#bois').html(treeCounter);
+$('#feuille').html(leefCounter);
+$('#roche').html(rockCounter);
+$('#eau').html(waterCounter);
+$('#feu').html(fireCounter);
+
 };
 
 //function to draw the dirt
@@ -277,7 +297,6 @@ world.bush(4);
 world.rock(15, 0);
 world.rock(15, 10);
 world.rock(15, 1);
-world.rock(11);
 world.sun();
 world.water(16, 18);
 world.water(16, 19);
