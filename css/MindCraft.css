@@ -22,6 +22,7 @@
     display:inline-block;
     margin-left: 30%;
     margin-top:2%;
+    float: left;
 }
 
 .dirt{
@@ -46,4 +47,15 @@
 
 .rock{
     background-image: url('../images/rock.png');
+}
+
+.toolBox{
+    background-color: black;
+    line-height: 0;
+    width: 100px;
+    height: 101%;
+    display: inline-block;
+    float:right;
+    position: absolute;
+    margin-top: 12px;
 }
