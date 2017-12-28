@@ -202,6 +202,7 @@ world.rock = function(col) {
         world.matrix[15][col+1] = 'rock';
 }
 
+console.log("this is a modification");
 
 
 $(document).ready(function (){
