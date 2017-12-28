@@ -10,7 +10,24 @@ var fireCounter = 3;
 var tempMaterial;
 
 //world.selectedElement = 'axe';             //create the function to get the element from the board
-world.selectedElement = 'water';               //create the function to get the element from the board
+world.selectedElement = selectedTool();
+
+function selectedTool(){
+    $('#pickAxe').on("click", (function(e){world.selectedElement = "pickAxe"}));
+    $('#axe').on("click", (function(e){world.selectedElement = "axe"}));
+    $('#shovel').on("click", (function(e){world.selectedElement = "shovel"}));
+    $('#sceau').on("click", (function(e){world.selectedElement = "bucket"}));
+    $('#terre').on("click", (function(e){world.selectedElement = "dirt"}));
+    $('#herbe').on("click", (function(e){world.selectedElement = "grass"}));
+    $('#bois').on("click", (function(e){world.selectedElement = "tree"}));
+    $('#feuille').on("click", (function(e){world.selectedElement = "leef"}));
+    $('#roche').on("click", (function(e){world.selectedElement = "rock"}));
+    $('#eau').on("click", (function(e){world.selectedElement = "water"}));
+    $('#feu').on("click", (function(e){world.selectedElement = "fire"}));
+
+};
+
+
 
 function clickedBox(e) {
     var line = $(this).data('line');
