@@ -3,10 +3,10 @@ var sizeOfTheWorld = 20;
 var treeCounter = 2;
 var leefCounter = 4;
 var grassCounter = 0;
-var rockCounter = 0;
+var rockCounter = 2;
 var dirtCounter = 0;
 var waterCounter = 4;
-var fireCounter = 4;
+var fireCounter = 6;
 var tempMaterial;
 
 world.selectedElement = selectedTool();
@@ -32,6 +32,8 @@ function clickedBox(e) {
     console.log("  line:" + line + "  column:" + col);
     var cl = $(this).attr('class');
     console.log(cl);
+
+    world.selectButton();
 
 // If TOOL is an AXE
     if (world.selectedElement === 'axe') {
@@ -136,6 +138,10 @@ world.updateBoard();
 //            }
 //    }
 //}
+
+world.selectButton = function() {
+    $(this).css('background-color', 'blue');
+}
 
 
 world.updateCounter = function(tempMaterial) {
@@ -288,7 +294,26 @@ world.water = function(line, col){
         world.matrix[line][col] = 'water';
 }
 
+
+
+function play() {
+    $('#myModal').modal('hide');
+};
+
+function Tuto() {
+    $('#myModal').modal('hide');
+    $("#myModal-t").modal('show');
+};
+
+
+//----------DOCUMENT READY ------------
+
 $(document).ready(function (){
+
+$(window).on('load',function () {
+    $('#myModal').modal('show');
+});
+
 world.dirt();
 world.cloud(5,5);
 world.cloud(3,15);
@@ -307,4 +332,5 @@ world.water(18, 19);
 
 world.updateBoard();
 })
+
 
