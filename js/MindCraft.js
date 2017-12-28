@@ -5,13 +5,15 @@ var leefCounter = 4;
 var grassCounter = 0;
 var rockCounter = 0;
 var dirtCounter = 0;
+var waterCounter = 4;
+var fireCounter = 3;
 var tempMaterial;
 
-world.selectedElement = 'axe'               //create the function to get the element from the board
+world.selectedElement = 'water';               //create the function to get the element from the board
 
 function clickedBox(e) {
-    var line = $(this).data('line')
-    var col = $(this).data('col')
+    var line = $(this).data('line');
+    var col = $(this).data('col');
     console.log("  line:" + line + "  column:" + col);
     var cl = $(this).attr('class');
     console.log(cl);
@@ -22,8 +24,6 @@ function clickedBox(e) {
             tempMaterial = world.matrix[line][col];
             world.updateCounter(tempMaterial);
             world.matrix[line][col] = "";
-            console.log('tree: ' + treeCounter);
-            console.log('leef: ' + leefCounter);
         } //else {$('#axeButton').css("background-color", "red");
     }
 
@@ -33,7 +33,6 @@ function clickedBox(e) {
             tempMaterial = world.matrix[line][col];
             world.updateCounter(tempMaterial);
             world.matrix[line][col] = "";
-            console.log('rock : ' + rockCounter);
         }   //else {$('#axeButton').css("background-color", "red");
     }
 
@@ -43,10 +42,17 @@ function clickedBox(e) {
             tempMaterial = world.matrix[line][col];
             world.updateCounter(tempMaterial);
             world.matrix[line][col] = "";
-            console.log('dirt : ' + dirtCounter);
-            console.log('grass : ' + grassCounter);
 
         }   //else {$('#axeButton').css("background-color", "red");
+    }
+
+//if TOOL is BUCKET
+    if (world.selectedElement === 'bucket') {
+        if (world.matrix[line][col] === 'water') {
+            tempMaterial = world.matrix[line][col];
+            world.updateCounter(tempMaterial);
+            world.matrix[line][col] = "";
+        }
     }
 
 // IF Selected Element is an Element --> place it
@@ -65,15 +71,37 @@ function clickedBox(e) {
                                         treeCounter--;}
                                             else if (world.selectedElement === 'leef'){
                                                 leefCounter--;}
-
-                }
+        }
     }
+
+    else if (world.selectedElement === 'water' && waterCounter > 0) {
+        if (world.matrix[line][col] === '') {
+            world.matrix[line][col] = 'water';
+            waterCounter--
+            }
+            else if (world.matrix[line][col] === 'fire') {
+                world.matrix[line][col] = '';
+                console.log(world.matrix[line][col]);
+                fireCounter++;
+                waterCounter--;
+                }
+        }
+
+    else if (world.selectedElement === 'fire' && fireCounter > 0) {
+        if (world.matrix[line][col] === 'tree' || world.matrix[line][col] === 'leef'
+        || world.matrix[line][col] === 'grass' || world.matrix[line][col] === 'dirt') {
+            world.matrix[line][col] = 'fire';
+            fireCounter--
+            }
+        }
 
 console.log('dirt ' + dirtCounter);
 console.log('grass ' + grassCounter);
 console.log('rock ' + rockCounter);
 console.log('tree ' + treeCounter);
 console.log('leef ' + leefCounter);
+console.log('water ' + waterCounter);
+console.log('fire ' + fireCounter);
 
 world.updateBoard();
 
@@ -90,6 +118,10 @@ world.updateCounter = function(tempMaterial) {
                 dirtCounter++}
                     else if (tempMaterial === 'grass') {
                     grassCounter++}
+                        else if (tempMaterial === 'water') {
+                        waterCounter++}
+                            else if (tempMaterial === 'fire') {
+                            fireCounter++}
 }
 
 //create an Array of Array (20 x 20) and set the value to ""
@@ -130,7 +162,10 @@ world.updateBoard = function () {
         .removeClass("dirt")
         .removeClass("tree")
         .removeClass("leef")
-        .removeClass("rock");
+        .removeClass("rock")
+        .removeClass('sun')
+        .removeClass('water')
+        .removeClass('fire');
 
     for (var i = 0; i < world.matrix.length; i++) {
         for (var j = 0; j < world.matrix[i].length; j++) {
@@ -152,6 +187,13 @@ for (var i = 16; i < 17; i++) {
         world.matrix[i][j] = 'grass';
         }
     }
+}
+
+world.sun = function () {
+    world.matrix[2][2] = 'sun';
+    world.matrix[2][3] = 'sun';
+    world.matrix[1][2] = 'sun';
+    world.matrix[1][3] = 'sun';
 }
 
 //function to draw the cloud
@@ -176,14 +218,13 @@ world.tree = function(line,col) {
         world.matrix[line-3][col] = 'tree';
         world.matrix[line-4][col] = 'leef';
         world.matrix[line-4][col+1] = 'leef';
+        world.matrix[line-4][col-1] = 'leef';
         world.matrix[line-5][col-1] = 'leef';
-        world.matrix[line-5][col+2] = 'leef';
         world.matrix[line-5][col] = 'leef';
         world.matrix[line-5][col+1] = 'leef';
-        world.matrix[line-5][col-1] = 'leef';
+        world.matrix[line-6][col-1] = 'leef';
         world.matrix[line-6][col] = 'leef';
         world.matrix[line-6][col+1] = 'leef';
-        world.matrix[line-4][col-1] = 'leef';
 }
 
 //Draw a bush
@@ -197,13 +238,19 @@ world.bush = function(col) {
 }
 
 //Draw a rock
-world.rock = function(col) {
-        world.matrix[15][col] = 'rock';
-        world.matrix[15][col+1] = 'rock';
+world.rock = function(line, col) {
+        world.matrix[line][col] = 'rock';
 }
 
+<<<<<<< dc6fe5c4006be765821a66ef6b4506f285386465
 console.log("this is a modification");
 
+=======
+//Draw water
+world.water = function(line, col){
+        world.matrix[line][col] = 'water';
+}
+>>>>>>> add water and fire
 
 $(document).ready(function (){
 world.dirt();
@@ -211,8 +258,18 @@ world.cloud(5,5);
 world.cloud(3,15);
 world.tree(15, 14)
 world.bush(4);
-world.rock(17);
-world.rock(10);
+world.rock(15, 0);
+world.rock(15, 10);
+world.rock(15, 1);
+world.rock(11);
+world.sun();
+world.water(16, 18);
+world.water(16, 19);
+world.water(17, 19);
+world.water(17, 18);
+world.water(16, 17);
+world.water(18, 19);
+
 world.updateBoard();
 })
 
