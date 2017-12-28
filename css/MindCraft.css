@@ -49,7 +49,6 @@
     background-image: url('../images/rock.png');
 }
 
-<<<<<<< dc6fe5c4006be765821a66ef6b4506f285386465
 .toolBox{
     background-color: black;
     line-height: 0;
@@ -59,7 +58,7 @@
     float:right;
     position: absolute;
     margin-top: 12px;
-=======
+
 .sun{
     background-color: yellow;
 }
@@ -70,5 +69,4 @@
 
 .fire{
     background-image: url('../images/fire.png');
->>>>>>> add water and fire
 }
