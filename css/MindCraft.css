@@ -145,10 +145,16 @@
     text-align: center;
     vertical-align: middle;
     padding-top: 5px;
+}
 
+.sun{
+    background-color: yellow;
+}
 
+.water{
+    background-image: url('../images/water.jpg');
+}
 
-
-
-
-
+.fire{
+    background-image: url('../images/fire.png');
+}
