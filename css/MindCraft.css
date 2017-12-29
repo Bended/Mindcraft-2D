@@ -146,7 +146,7 @@
     height: 30px;    
     margin: 5% 9%;
     color: white;
-    font-family: '8BITWONDERNominal';
+    font-family: 'MinecraftiaRegular';
     font-size: 11px;
     text-align: center;
     vertical-align: middle;
@@ -177,7 +177,7 @@
   height: auto;
   min-height: 100%;
   border-radius: 0;
-  background-image: url('https://minecraft.net/static/pages/img/index-hero-og.088fb7996b03.jpg');
+  background-image: url('../images/bg3.jpg');
   background-repeat: no-repeat;
   background-size:cover;
 }
@@ -234,13 +234,19 @@ button:hover {
   border-right: 2px solid #59639A;
   border-left: 2px solid #BDC6FF;
   border-top: 2px solid #BDC6FF;
-  background-image: url('http://charliecowan.co.uk/mcbuttongenerator/button_active_center.png');
+  background-image: url('../images/btn_home.png');
   color: #FFFFA0;
+}
+
+#myModalTuto{
+    align-text:center;
+    position:absolute;
 }
 
 #myModalTuto #modal-content-tuto {
     background-image: url('../images/bg2.jpg');
     background-size: contain;
+    align-text:center;
 }
 
 #modal-title-tuto{
@@ -252,5 +258,5 @@ button:hover {
 }
 
 #modal-header-tuto{
-
+    text-align:center;
 }
