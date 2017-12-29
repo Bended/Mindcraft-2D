@@ -66,9 +66,15 @@
     background-color: black;
     border:1px solid white;
     background-size: contain;
+    transition: opacity 0.5s border 0.5s;
 }
 
-#axe{
+.tools:hover{
+    opacity: 0.5;
+    border : none;
+}
+
+#axe {
     margin-top: 20px;
     background-image: url('../images/axe.png');
 }
@@ -93,8 +99,10 @@
     border:1px solid white;
     display: inline-block;
     background-size: contain;
+    color:white;
+    font-family: 'MinecraftiaRegular';
+    font-size:12px;
 }
-
 
 .R1{
     margin-top: 10px;
@@ -138,7 +146,7 @@
     height: 30px;    
     margin: 5% 9%;
     color: white;
-    font-family: '8BITWONDERNominal'; 
+    font-family: '8BITWONDERNominal';
     font-size: 11px;
     text-align: center;
     vertical-align: middle;
@@ -155,4 +163,94 @@
 
 .fire{
     background-image: url('../images/fire.png');
+}
+
+------------     MODAL    ------------------
+.modal-dialog {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+#modal-content-home {
+  height: auto;
+  min-height: 100%;
+  border-radius: 0;
+  background-image: url('https://minecraft.net/static/pages/img/index-hero-og.088fb7996b03.jpg');
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+@media (min-width: 200px){
+
+.modal-dialog {
+    margin: 0px;
+}
+}
+
+.modal img{
+    width: 60%;
+    margin-left:18%;
+    text-align:center;
+    position:absolute;
+}
+
+
+button {
+  height: 8%;
+  min-width:150px;
+  width: 20%;
+  outline: 2px solid black;
+  position: relative;
+  margin-left: 24%;
+  margin-top: 20%;
+  background-image: url('http://charliecowan.co.uk/mcbuttongenerator/button_center.png');
+  background-repeat: repeat;
+  padding: 5px;
+  font-family: 'MinecraftiaRegular';
+  color: white;
+  text-shadow: 3px 3px #4C4C4C;
+  border-bottom: 4px solid #565656;
+  border-right: 2px solid #565656;
+  border-left: 2px solid #AAA;
+  border-top: 2px solid #AAA;
+  box-sizing: border-box;
+  font-size: 18px;
+  display:inline-block;
+  text-align:center;
+}
+}
+
+#play{
+    margin-left:28%;
+}
+
+#tuto{
+    margin-left:5%;
+}
+
+button:hover {
+  border-bottom: 4px solid #59639A;
+  border-right: 2px solid #59639A;
+  border-left: 2px solid #BDC6FF;
+  border-top: 2px solid #BDC6FF;
+  background-image: url('http://charliecowan.co.uk/mcbuttongenerator/button_active_center.png');
+  color: #FFFFA0;
+}
+
+#myModalTuto #modal-content-tuto {
+    background-image: url('../images/bg2.jpg');
+    background-size: contain;
+}
+
+#modal-title-tuto{
+    text-align:center;
+    font-size: 25px;
+    font-family: 'MinecraftiaRegular';
+    font-width: 25px;
+    color:white;
+}
+
+#modal-header-tuto{
+
 }
