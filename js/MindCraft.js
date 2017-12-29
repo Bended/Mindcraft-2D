@@ -107,6 +107,7 @@ function clickedBox(e) {
                 fireCounter++;
                 waterCounter--;
                 }
+
         }
 
     else if (world.selectedElement === 'fire' && fireCounter > 0) {
@@ -114,6 +115,11 @@ function clickedBox(e) {
         || world.matrix[line][col] === 'grass' || world.matrix[line][col] === 'dirt') {
             world.matrix[line][col] = 'fire';
             fireCounter--;
+            }
+        else if (world.matrix[line][col]==='goku'){
+            world.matrix[line][col]='fire';
+            fireCounter--;
+            gokuCounter++;
             }
         }
 
@@ -165,6 +171,8 @@ world.updateCounter = function(tempMaterial) {
                         waterCounter++}
                             else if (tempMaterial === 'fire') {
                             fireCounter++}
+                                else if (tempMaterial === 'goku') {
+                                gokuCounter++}
 }
 
 //create an Array of Array (20 x 20) and set the value to ""
@@ -345,6 +353,4 @@ world.water(18, 19);
 
 world.updateBoard();
 })
-
-console.log("modification test");
 
