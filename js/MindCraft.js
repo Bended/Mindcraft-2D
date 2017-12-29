@@ -302,8 +302,12 @@ function play() {
 
 function Tuto() {
     $('#myModal').modal('hide');
-    $("#myModal-t").modal('show');
+    $("#myModalTuto").modal('show');
 };
+
+function home() {
+    $('#myModal').modal('show');
+}
 
 
 //----------DOCUMENT READY ------------

@@ -33,30 +33,31 @@
 
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-lg" style="width:100%; height:100%">
-      <div class="modal-content">
+      <div class="modal-content" id="modal-content-home">
                     <img src="./images/title.png"><br>
+                   <div>
                     <button id="play" onclick="play()">Play</button>
                     <button id="tuto" onclick="Tuto()">Tutorial</button>
+                   </div>
       </div>
       </div>
     </div>
 
   <!-- ------------MODAL  TUTO----------- -->
 
-  <div class="modal fade" id="myModal-t" role="dialog">
+  <div class="modal fade" id="myModalTuto" role="dialog">
     <div class="modal-dialog">
 
       <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
+      <div class="modal-content" id="modal-content-tuto">
+        <div class="modal-header" id="modal-header-tuto">
+          <h4 class="modal-title" id="modal-title-tuto">Tutorial</h4>
         </div>
         <div class="modal-body">
           <p>Some text in the modal.</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" onclick="home()">Close</button>
         </div>
       </div>
 
