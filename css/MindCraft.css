@@ -48,6 +48,9 @@
 .rock{
     background-image: url('../images/rock.png');
 }
+.goku{
+    background-image: url('../images/goku.png');
+}
 
 .toolBox{
     background-color: black;

@@ -7,7 +7,9 @@ var rockCounter = 2;
 var dirtCounter = 0;
 var waterCounter = 4;
 var fireCounter = 6;
+var gokuCounter =5;
 var tempMaterial;
+
 
 world.selectedElement = selectedTool();
 
@@ -23,6 +25,7 @@ function selectedTool(){
     $('#roche').on("click", (function(e){world.selectedElement = "rock"}));
     $('#eau').on("click", (function(e){world.selectedElement = "water"}));
     $('#feu').on("click", (function(e){world.selectedElement = "fire"}));
+    $('#goku').on("click", (function(e){world.selectedElement = "goku"}));
 
 };
 
@@ -75,7 +78,7 @@ function clickedBox(e) {
 // IF Selected Element is an Element --> place it
     if ((world.selectedElement === 'grass' && grassCounter > 0) || (world.selectedElement === 'rock' && rockCounter > 0)
             || (world.selectedElement === 'dirt' && dirtCounter > 0) || (world.selectedElement === 'tree' && treeCounter > 0)
-            || (world.selectedElement === 'leef' && leefCounter > 0)) {
+            || (world.selectedElement === 'leef' && leefCounter > 0) || (world.selectedElement === 'goku' && gokuCounter > 0)) {
         if (world.matrix[line][col] === '') {
             world.matrix[line][col] = world.selectedElement
                 if (world.selectedElement === 'grass'){
@@ -88,6 +91,8 @@ function clickedBox(e) {
                                         treeCounter--;}
                                             else if (world.selectedElement === 'leef'){
                                                 leefCounter--;}
+                                                    else if (world.selectedElement === 'goku'){
+                                                        gokuCounter--;}
         }
     }
 
@@ -125,6 +130,7 @@ console.log('tree ' + treeCounter);
 console.log('leef ' + leefCounter);
 console.log('water ' + waterCounter);
 console.log('fire ' + fireCounter);
+console.log('goku' + gokuCounter);
 
 world.updateBoard();
 }
@@ -202,7 +208,8 @@ world.updateBoard = function () {
         .removeClass("rock")
         .removeClass('sun')
         .removeClass('water')
-        .removeClass('fire');
+        .removeClass('fire')
+        .removeClass('goku');
 
     for (var i = 0; i < world.matrix.length; i++) {
         for (var j = 0; j < world.matrix[i].length; j++) {
@@ -217,6 +224,8 @@ $('#feuille').html(leefCounter);
 $('#roche').html(rockCounter);
 $('#eau').html(waterCounter);
 $('#feu').html(fireCounter);
+$('#goku').html(gokuCounter);
+
 
 };
 
@@ -337,4 +346,5 @@ world.water(18, 19);
 world.updateBoard();
 })
 
+console.log("modification test");
 
