@@ -9,6 +9,7 @@ var waterCounter = 4;
 var fireCounter = 6;
 var gokuCounter =5;
 var tempMaterial;
+var selectedWorld;
 
 
 world.selectedElement = selectedTool();
@@ -378,6 +379,23 @@ function home() {
     $('#myModal').modal('show');
 }
 
+world.reset = function() {
+    for (var x = 0; x < 20; x++) {
+        for (var y = 0; y < 20; y++){
+                world.matrix[x][y] = "";
+            }
+    }
+    world.updateBoard();
+    if (selectedWorld === 'winter') {
+       console.log(selectedWorld);
+        playWinter();
+        }
+        else if (selectedWorld === 'spring')
+            {
+            playSpring()
+            }
+}
+
 
 //----------DOCUMENT READY ------------
 
@@ -392,6 +410,7 @@ $(window).on('load',function () {
 
 function playSpring() {
     $('#myModal').modal('hide');
+    selectedWorld = 'spring';
     world.dirt();
     world.cloud(5,5);
     world.cloud(3,15);
@@ -412,6 +431,7 @@ function playSpring() {
 
 function playWinter() {
     $('#myModal').modal('hide');
+    selectedWorld = 'winter';
     world.dirt();
     world.cloud(2,2);
     world.cloud(4,1);
@@ -435,7 +455,6 @@ function playWinter() {
     world.water(16,9);
     world.water(16,10);
     world.updateBoard();
-    storm();
 
 };
 
