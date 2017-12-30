@@ -13,6 +13,25 @@ var tempMaterial;
 
 world.selectedElement = selectedTool();
 
+world.sound = function (tool) {
+    var sound;
+    if (tool === 'axe')
+      {sound=new Audio("./sounds/axe.wav");
+        }   else if (tool === 'pickAxe') {
+                sound=new Audio("./sounds/pickAxe.wav");
+                }   else if (tool === 'shovel') {
+                        sound=new Audio("./sounds/shovel.wav");
+                        }   else if (tool === 'shovel') {
+                                sound=new Audio("./sounds/shovel.wav");
+                                }   else if (tool === 'fire') {
+                                        sound=new Audio("./sounds/fire.wav");
+                                        }   else if (tool === 'water' || tool === 'bucket') {
+                                                sound=new Audio("./sounds/water.wav");
+                                                }
+
+    sound.play();
+}
+
 function selectedTool(){
     $('#pickAxe').on("click", (function(e){world.selectedElement = "pickAxe"}));
     $('#axe').on("click", (function(e){world.selectedElement = "axe"}));
@@ -44,6 +63,8 @@ function clickedBox(e) {
             tempMaterial = world.matrix[line][col];
             world.updateCounter(tempMaterial);
             world.matrix[line][col] = "";
+            world.sound(world.selectedElement);
+
         } //else {$('#axeButton').css("background-color", "red");
     }
 
@@ -53,6 +74,8 @@ function clickedBox(e) {
             tempMaterial = world.matrix[line][col];
             world.updateCounter(tempMaterial);
             world.matrix[line][col] = "";
+            world.sound(world.selectedElement);
+            world.sound(world.selectedElement);
         }   //else {$('#axeButton').css("background-color", "red");
     }
 
@@ -62,6 +85,7 @@ function clickedBox(e) {
             tempMaterial = world.matrix[line][col];
             world.updateCounter(tempMaterial);
             world.matrix[line][col] = "";
+            world.sound(world.selectedElement);
 
         }   //else {$('#axeButton').css("background-color", "red");
     }
@@ -72,6 +96,7 @@ function clickedBox(e) {
             tempMaterial = world.matrix[line][col];
             world.updateCounter(tempMaterial);
             world.matrix[line][col] = "";
+            world.sound(world.selectedElement);
         }
     }
 
@@ -99,15 +124,16 @@ function clickedBox(e) {
     else if (world.selectedElement === 'water' && waterCounter > 0) {
         if (world.matrix[line][col] === '') {
             world.matrix[line][col] = 'water';
-            waterCounter--
+            waterCounter--;
+            world.sound(world.selectedElement);
             }
             else if (world.matrix[line][col] === 'fire') {
                 world.matrix[line][col] = '';
                 console.log(world.matrix[line][col]);
                 fireCounter++;
                 waterCounter--;
+                world.sound(world.selectedElement);
                 }
-
         }
 
     else if (world.selectedElement === 'fire' && fireCounter > 0) {
@@ -115,11 +141,13 @@ function clickedBox(e) {
         || world.matrix[line][col] === 'grass' || world.matrix[line][col] === 'dirt') {
             world.matrix[line][col] = 'fire';
             fireCounter--;
+            world.sound(world.selectedElement);
             }
         else if (world.matrix[line][col]==='goku'){
             world.matrix[line][col]='fire';
             fireCounter--;
             gokuCounter++;
+            world.sound(world.selectedElement);
             }
         }
 
