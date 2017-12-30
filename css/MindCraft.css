@@ -257,3 +257,7 @@ button:hover {
 #modal-header-tuto{
 
 }
+
+.cursorNew{
+  cursor: url("../images/axe.png"), auto;
+}

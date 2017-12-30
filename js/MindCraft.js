@@ -13,6 +13,8 @@ var tempMaterial;
 
 world.selectedElement = selectedTool();
 
+
+
 function selectedTool(){
     $('#pickAxe').on("click", (function(e){world.selectedElement = "pickAxe"}));
     $('#axe').on("click", (function(e){world.selectedElement = "axe"}));
@@ -44,7 +46,14 @@ function clickedBox(e) {
             tempMaterial = world.matrix[line][col];
             world.updateCounter(tempMaterial);
             world.matrix[line][col] = "";
-        } //else {$('#axeButton').css("background-color", "red");
+        } 
+         else {
+            $("#axe").css("background-color", "red");
+
+                setTimeout(function () {
+                $("#axe").css("background-color", "blue");
+                }, 200);
+        }
     }
 
 //If TOOL is an PICK AXE
@@ -53,7 +62,14 @@ function clickedBox(e) {
             tempMaterial = world.matrix[line][col];
             world.updateCounter(tempMaterial);
             world.matrix[line][col] = "";
-        }   //else {$('#axeButton').css("background-color", "red");
+        }  
+        else {
+            $("#pickAxe").css("background-color", "red");
+
+                setTimeout(function () {
+                $("#pickAxe").css("background-color", "blue");
+                }, 200);
+            }  
     }
 
 //If TOOL is an SHOVEL
@@ -63,7 +79,14 @@ function clickedBox(e) {
             world.updateCounter(tempMaterial);
             world.matrix[line][col] = "";
 
-        }   //else {$('#axeButton').css("background-color", "red");
+        }   
+        else {
+            $("#shovel").css("background-color", "red");
+
+                setTimeout(function () {
+                $("#shovel").css("background-color", "blue");
+                }, 200);
+            }  
     }
 
 //if TOOL is BUCKET
@@ -73,6 +96,13 @@ function clickedBox(e) {
             world.updateCounter(tempMaterial);
             world.matrix[line][col] = "";
         }
+        else {
+            $("#bucket").css("background-color", "red");
+
+                setTimeout(function () {
+                $("#bucket").css("background-color", "blue");
+                }, 200);
+            }  
     }
 
 // IF Selected Element is an Element --> place it
