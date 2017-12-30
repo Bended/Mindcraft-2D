@@ -317,6 +317,37 @@ world.tree = function(line,col) {
         world.matrix[line-6][col+1] = 'leef';
 }
 
+world.sapin = function(line,col) {
+        world.matrix[line][col] = 'tree';
+        world.matrix[line-1][col-2] = 'leef';
+        world.matrix[line-1][col-1] = 'leef';
+        world.matrix[line-1][col] = 'leef';
+        world.matrix[line-1][col+1] = 'leef';
+        world.matrix[line-1][col+2] = 'leef';
+        world.matrix[line-2][col-2] = 'leef';
+        world.matrix[line-2][col-1] = 'leef';
+        world.matrix[line-2][col] = 'leef';
+        world.matrix[line-2][col+1] = 'leef';
+        world.matrix[line-2][col+2] = 'leef';
+        world.matrix[line-3][col-2] = 'leef';
+        world.matrix[line-3][col-1] = 'leef';
+        world.matrix[line-3][col] = 'leef';
+        world.matrix[line-3][col+1] = 'leef';
+        world.matrix[line-3][col+2] = 'leef';
+        world.matrix[line-4][col-1] = 'leef';
+        world.matrix[line-4][col] = 'leef';
+        world.matrix[line-4][col+1] = 'leef';
+        world.matrix[line-5][col-1] = 'leef';
+        world.matrix[line-5][col] = 'leef';
+        world.matrix[line-5][col+1] = 'leef';
+        world.matrix[line-6][col-1] = 'leef';
+        world.matrix[line-6][col] = 'leef';
+        world.matrix[line-6][col+1] = 'leef';
+        world.matrix[line-7][col] = 'leef';
+        world.matrix[line-8][col] = 'leef';
+
+}
+
 //Draw a bush
 world.bush = function(col) {
         world.matrix[15][col] = 'leef';
@@ -339,17 +370,10 @@ world.water = function(line, col){
         world.matrix[line][col] = 'water';
 }
 
-
-
-function play() {
-    $('#myModal').modal('hide');
-};
-
 function Tuto() {
    // $('#myModal').modal('hide');
     $("#myModalTuto").modal('show');
 };
-
 function home() {
     $('#myModal').modal('show');
 }
@@ -363,22 +387,55 @@ $(window).on('load',function () {
     $('#myModal').modal('show');
 });
 
-world.dirt();
-world.cloud(5,5);
-world.cloud(3,15);
-world.tree(15, 14)
-world.bush(4);
-world.rock(15, 0);
-world.rock(15, 10);
-world.rock(15, 1);
-world.sun();
-world.water(16, 18);
-world.water(16, 19);
-world.water(17, 19);
-world.water(17, 18);
-world.water(16, 17);
-world.water(18, 19);
-
-world.updateBoard();
 })
+
+
+function playSpring() {
+    $('#myModal').modal('hide');
+    world.dirt();
+    world.cloud(5,5);
+    world.cloud(3,15);
+    world.tree(15, 14)
+    world.bush(4);
+    world.rock(15, 0);
+    world.rock(15, 10);
+    world.rock(15, 1);
+    world.sun();
+    world.water(16, 18);
+    world.water(16, 19);
+    world.water(17, 19);
+    world.water(17, 18);
+    world.water(16, 17);
+    world.water(18, 19);
+    world.updateBoard();
+};
+
+function playWinter() {
+    $('#myModal').modal('hide');
+    world.dirt();
+    world.cloud(2,2);
+    world.cloud(4,1);
+    world.cloud(3,5);
+    world.cloud(5,1);
+    world.cloud(3,6);
+    world.cloud(4,8);
+    world.cloud(4,10);
+    world.cloud(5,14);
+    world.cloud(6,16);
+    world.cloud(5,18);
+    world.cloud(5,5);
+    world.cloud(3,16);
+    world.sapin(15, 14);
+    world.sapin(15, 3);
+    world.rock(15,18);
+    world.rock(15,19);
+    world.rock(14,19);
+    world.rock(16,8);
+    world.rock(16,11);
+    world.water(16,9);
+    world.water(16,10);
+    world.updateBoard();
+    storm();
+
+};
 

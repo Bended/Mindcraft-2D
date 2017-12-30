@@ -224,12 +224,18 @@ button {
 }
 }
 
-#play{
+#playWinter{
     margin-left:28%;
+    }
+
+#playSpring{
+    margin-left:5%;
 }
 
 #tuto{
-    margin-left:5%;
+    align-text:center;
+    margin-top:5%;
+    margin-left:36%;
 }
 
 button:hover {
