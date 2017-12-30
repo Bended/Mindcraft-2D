@@ -244,22 +244,44 @@ button:hover {
 #myModalTuto{
     align-text:center;
     position:absolute;
+    font-family: 'MinecraftiaRegular';
+    color:white;
 }
 
-#myModalTuto #modal-content-tuto {
+#modal-dialog-tuto{
+    position:absolute;
+    align-text:center;
+    position:absolute;
+    margin-left:20%;
+}
+
+#modal-content-tuto {
     background-image: url('../images/bg2.jpg');
-    background-size: contain;
+    background-size: cover;
     align-text:center;
 }
 
 #modal-title-tuto{
     text-align:center;
+    font-size: 30px;
+    font-width: 28px;
+    padding:20px;
+}
+
+#modal-body-tuto{
     font-size: 25px;
-    font-family: 'MinecraftiaRegular';
-    font-width: 25px;
-    color:white;
+    font-width: 16px;
 }
 
 #modal-header-tuto{
     text-align:center;
+}
+
+#modal-footer-tuto{
+    height:100px;
+}
+
+#button-tuto{
+    margin-top:2%;
+    height:40px;
 }

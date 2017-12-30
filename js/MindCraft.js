@@ -318,7 +318,7 @@ function play() {
 };
 
 function Tuto() {
-    $('#myModal').modal('hide');
+   // $('#myModal').modal('hide');
     $("#myModalTuto").modal('show');
 };
 
