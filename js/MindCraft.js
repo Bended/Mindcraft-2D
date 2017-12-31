@@ -35,9 +35,21 @@ world.sound = function (tool) {
 
 function selectedTool(){
     $('#pickAxe').on("click", (function(e){world.selectedElement = "pickAxe"}));
+    $('#pickAxe').on("click", (function(e){ $('#pickAxe').addClass('bgTools')}));
+    $('#pickAxe').on("click", (function(e){ $('#axe, #shovel, #sceau').removeClass('bgTools')}));
+
     $('#axe').on("click", (function(e){world.selectedElement = "axe"}));
+    $('#axe').on("click", (function(e){ $('#axe').addClass('bgTools')}));
+    $('#axe').on("click", (function(e){ $('#pickAxe, #shovel, #sceau').removeClass('bgTools')}));
+
     $('#shovel').on("click", (function(e){world.selectedElement = "shovel"}));
+    $('#shovel').on("click", (function(e){ $('#shovel').addClass('bgTools')}));
+    $('#shovel').on("click", (function(e){ $('#pickAxe, #axe, #sceau').removeClass('bgTools')}));
+
     $('#sceau').on("click", (function(e){world.selectedElement = "bucket"}));
+    $('#sceau').on("click", (function(e){ $('#sceau').addClass('bgTools')}));
+    $('#sceau').on("click", (function(e){ $('#pickAxe, #shovel, #axe').removeClass('bgTools')}));
+
     $('#terre').on("click", (function(e){world.selectedElement = "dirt"}));
     $('#herbe').on("click", (function(e){world.selectedElement = "grass"}));
     $('#bois').on("click", (function(e){world.selectedElement = "tree"}));
@@ -52,9 +64,7 @@ function selectedTool(){
 function clickedBox(e) {
     var line = $(this).data('line');
     var col = $(this).data('col');
-    console.log("  line:" + line + "  column:" + col);
     var cl = $(this).attr('class');
-    console.log(cl);
 
     world.selectButton();
 
@@ -65,9 +75,13 @@ function clickedBox(e) {
             world.updateCounter(tempMaterial);
             world.matrix[line][col] = "";
             world.sound(world.selectedElement);
-
-        } //else {$('#axeButton').css("background-color", "red");
-    }
+        } else {
+               $("#axe").toggleClass('bgRed');
+                setTimeout(function () {
+                $("#axe").toggleClass('bgRed');
+                }, 200);
+        }
+}
 
 //If TOOL is an PICK AXE
     if (world.selectedElement === 'pickAxe') {
@@ -77,7 +91,12 @@ function clickedBox(e) {
             world.matrix[line][col] = "";
             world.sound(world.selectedElement);
             world.sound(world.selectedElement);
-        }   //else {$('#axeButton').css("background-color", "red");
+        }   else {
+            $("#pickAxe").toggleClass('bgRed');
+                setTimeout(function () {
+                $("#pickAxe").toggleClass('bgRed');
+                }, 200);
+            }
     }
 
 //If TOOL is an SHOVEL
@@ -87,8 +106,12 @@ function clickedBox(e) {
             world.updateCounter(tempMaterial);
             world.matrix[line][col] = "";
             world.sound(world.selectedElement);
-
-        }   //else {$('#axeButton').css("background-color", "red");
+        }   else {
+            $("#shovel").addClass('bgRed');
+                setTimeout(function () {
+                $("#shovel").toggleClass('bgRed');
+                }, 200);
+            }
     }
 
 //if TOOL is BUCKET
@@ -98,7 +121,12 @@ function clickedBox(e) {
             world.updateCounter(tempMaterial);
             world.matrix[line][col] = "";
             world.sound(world.selectedElement);
-        }
+        }   else {
+                $("#sceau").addClass('bgRed');
+                setTimeout(function () {
+                $("#sceau").toggleClass('bgRed');
+                }, 200);
+            }
     }
 
 // IF Selected Element is an Element --> place it
@@ -130,7 +158,6 @@ function clickedBox(e) {
             }
             else if (world.matrix[line][col] === 'fire') {
                 world.matrix[line][col] = '';
-                console.log(world.matrix[line][col]);
                 fireCounter++;
                 waterCounter--;
                 world.sound(world.selectedElement);
@@ -152,33 +179,10 @@ function clickedBox(e) {
             }
         }
 
-//console.log(world.selectedElement);
-//console.log(line);
-//console.log(col);
-
-//world.fall(line, col);
-
-console.log('dirt ' + dirtCounter);
-console.log('grass ' + grassCounter);
-console.log('rock ' + rockCounter);
-console.log('tree ' + treeCounter);
-console.log('leef ' + leefCounter);
-console.log('water ' + waterCounter);
-console.log('fire ' + fireCounter);
-console.log('goku' + gokuCounter);
 
 world.updateBoard();
 }
 
-//world.fall = function (line, col) {
-//    for (var i = line; i < 20; i++) {
-//        console.log(line);
-//        if (world.matrix[line + i][col] !== '') {
-//            world.matrix[line + i - 1][col] = world.selectedElement;
-//            //setTimeout(world.updateBoard(), 300);
-//            }
-//    }
-//}
 
 world.selectButton = function() {
     $(this).css('background-color', 'blue');
@@ -364,8 +368,6 @@ world.rock = function(line, col) {
         world.matrix[line][col] = 'rock';
 }
 
-//console.log("this is a modification");
-
 //Draw water
 world.water = function(line, col){
         world.matrix[line][col] = 'water';
@@ -387,7 +389,6 @@ world.reset = function() {
     }
     world.updateBoard();
     if (selectedWorld === 'winter') {
-       console.log(selectedWorld);
         playWinter();
         }
         else if (selectedWorld === 'spring')

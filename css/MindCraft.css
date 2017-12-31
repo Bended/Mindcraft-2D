@@ -292,3 +292,11 @@ button:hover {
     margin-top:2%;
     height:40px;
 }
+
+.bgRed{
+  background-color: red;
+}
+
+.bgTools{
+  background-color: blue;
+}
