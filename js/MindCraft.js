@@ -9,17 +9,48 @@ var waterCounter = 4;
 var fireCounter = 6;
 var gokuCounter =5;
 var tempMaterial;
+var selectedWorld;
 
 
 world.selectedElement = selectedTool();
 
 
+world.sound = function (tool) {
+    var sound;
+    if (tool === 'axe')
+      {sound=new Audio("./sounds/axe.wav");
+        }   else if (tool === 'pickAxe') {
+                sound=new Audio("./sounds/pickAxe.wav");
+                }   else if (tool === 'shovel') {
+                        sound=new Audio("./sounds/shovel.wav");
+                        }   else if (tool === 'shovel') {
+                                sound=new Audio("./sounds/shovel.wav");
+                                }   else if (tool === 'fire') {
+                                        sound=new Audio("./sounds/fire.wav");
+                                        }   else if (tool === 'water' || tool === 'bucket') {
+                                                sound=new Audio("./sounds/water.wav");
+                                                }
+
+    sound.play();
+}
 
 function selectedTool(){
     $('#pickAxe').on("click", (function(e){world.selectedElement = "pickAxe"}));
+    $('#pickAxe').on("click", (function(e){ $('#pickAxe').addClass('bgTools')}));
+    $('#pickAxe').on("click", (function(e){ $('#axe, #shovel, #sceau').removeClass('bgTools')}));
+
     $('#axe').on("click", (function(e){world.selectedElement = "axe"}));
+    $('#axe').on("click", (function(e){ $('#axe').addClass('bgTools')}));
+    $('#axe').on("click", (function(e){ $('#pickAxe, #shovel, #sceau').removeClass('bgTools')}));
+
     $('#shovel').on("click", (function(e){world.selectedElement = "shovel"}));
+    $('#shovel').on("click", (function(e){ $('#shovel').addClass('bgTools')}));
+    $('#shovel').on("click", (function(e){ $('#pickAxe, #axe, #sceau').removeClass('bgTools')}));
+
     $('#sceau').on("click", (function(e){world.selectedElement = "bucket"}));
+    $('#sceau').on("click", (function(e){ $('#sceau').addClass('bgTools')}));
+    $('#sceau').on("click", (function(e){ $('#pickAxe, #shovel, #axe').removeClass('bgTools')}));
+
     $('#terre').on("click", (function(e){world.selectedElement = "dirt"}));
     $('#herbe').on("click", (function(e){world.selectedElement = "grass"}));
     $('#bois').on("click", (function(e){world.selectedElement = "tree"}));
@@ -34,9 +65,7 @@ function selectedTool(){
 function clickedBox(e) {
     var line = $(this).data('line');
     var col = $(this).data('col');
-    console.log("  line:" + line + "  column:" + col);
     var cl = $(this).attr('class');
-    console.log(cl);
 
     world.selectButton();
 
@@ -55,6 +84,14 @@ function clickedBox(e) {
                 }, 200);
         }
     }
+            world.sound(world.selectedElement);
+        } else {
+               $("#axe").toggleClass('bgRed');
+                setTimeout(function () {
+                $("#axe").toggleClass('bgRed');
+                }, 200);
+        }
+}
 
 //If TOOL is an PICK AXE
     if (world.selectedElement === 'pickAxe') {
@@ -70,6 +107,14 @@ function clickedBox(e) {
                 $("#pickAxe").css("background-color", "blue");
                 }, 200);
             }  
+            world.sound(world.selectedElement);
+            world.sound(world.selectedElement);
+        }   else {
+            $("#pickAxe").toggleClass('bgRed');
+                setTimeout(function () {
+                $("#pickAxe").toggleClass('bgRed');
+                }, 200);
+            }
     }
 
 //If TOOL is an SHOVEL
@@ -87,6 +132,13 @@ function clickedBox(e) {
                 $("#shovel").css("background-color", "blue");
                 }, 200);
             }  
+            world.sound(world.selectedElement);
+        }   else {
+            $("#shovel").addClass('bgRed');
+                setTimeout(function () {
+                $("#shovel").toggleClass('bgRed');
+                }, 200);
+            }
     }
 
 //if TOOL is BUCKET
@@ -103,6 +155,13 @@ function clickedBox(e) {
                 $("#bucket").css("background-color", "blue");
                 }, 200);
             }  
+            world.sound(world.selectedElement);
+        }   else {
+                $("#sceau").addClass('bgRed');
+                setTimeout(function () {
+                $("#sceau").toggleClass('bgRed');
+                }, 200);
+            }
     }
 
 // IF Selected Element is an Element --> place it
@@ -129,15 +188,15 @@ function clickedBox(e) {
     else if (world.selectedElement === 'water' && waterCounter > 0) {
         if (world.matrix[line][col] === '') {
             world.matrix[line][col] = 'water';
-            waterCounter--
+            waterCounter--;
+            world.sound(world.selectedElement);
             }
             else if (world.matrix[line][col] === 'fire') {
                 world.matrix[line][col] = '';
-                console.log(world.matrix[line][col]);
                 fireCounter++;
                 waterCounter--;
+                world.sound(world.selectedElement);
                 }
-
         }
 
     else if (world.selectedElement === 'fire' && fireCounter > 0) {
@@ -145,41 +204,20 @@ function clickedBox(e) {
         || world.matrix[line][col] === 'grass' || world.matrix[line][col] === 'dirt') {
             world.matrix[line][col] = 'fire';
             fireCounter--;
+            world.sound(world.selectedElement);
             }
         else if (world.matrix[line][col]==='goku'){
             world.matrix[line][col]='fire';
             fireCounter--;
             gokuCounter++;
+            world.sound(world.selectedElement);
             }
         }
 
-//console.log(world.selectedElement);
-//console.log(line);
-//console.log(col);
-
-//world.fall(line, col);
-
-console.log('dirt ' + dirtCounter);
-console.log('grass ' + grassCounter);
-console.log('rock ' + rockCounter);
-console.log('tree ' + treeCounter);
-console.log('leef ' + leefCounter);
-console.log('water ' + waterCounter);
-console.log('fire ' + fireCounter);
-console.log('goku' + gokuCounter);
 
 world.updateBoard();
 }
 
-//world.fall = function (line, col) {
-//    for (var i = line; i < 20; i++) {
-//        console.log(line);
-//        if (world.matrix[line + i][col] !== '') {
-//            world.matrix[line + i - 1][col] = world.selectedElement;
-//            //setTimeout(world.updateBoard(), 300);
-//            }
-//    }
-//}
 
 world.selectButton = function() {
     $(this).css('background-color', 'blue');
@@ -319,6 +357,37 @@ world.tree = function(line,col) {
         world.matrix[line-6][col+1] = 'leef';
 }
 
+world.sapin = function(line,col) {
+        world.matrix[line][col] = 'tree';
+        world.matrix[line-1][col-2] = 'leef';
+        world.matrix[line-1][col-1] = 'leef';
+        world.matrix[line-1][col] = 'leef';
+        world.matrix[line-1][col+1] = 'leef';
+        world.matrix[line-1][col+2] = 'leef';
+        world.matrix[line-2][col-2] = 'leef';
+        world.matrix[line-2][col-1] = 'leef';
+        world.matrix[line-2][col] = 'leef';
+        world.matrix[line-2][col+1] = 'leef';
+        world.matrix[line-2][col+2] = 'leef';
+        world.matrix[line-3][col-2] = 'leef';
+        world.matrix[line-3][col-1] = 'leef';
+        world.matrix[line-3][col] = 'leef';
+        world.matrix[line-3][col+1] = 'leef';
+        world.matrix[line-3][col+2] = 'leef';
+        world.matrix[line-4][col-1] = 'leef';
+        world.matrix[line-4][col] = 'leef';
+        world.matrix[line-4][col+1] = 'leef';
+        world.matrix[line-5][col-1] = 'leef';
+        world.matrix[line-5][col] = 'leef';
+        world.matrix[line-5][col+1] = 'leef';
+        world.matrix[line-6][col-1] = 'leef';
+        world.matrix[line-6][col] = 'leef';
+        world.matrix[line-6][col+1] = 'leef';
+        world.matrix[line-7][col] = 'leef';
+        world.matrix[line-8][col] = 'leef';
+
+}
+
 //Draw a bush
 world.bush = function(col) {
         world.matrix[15][col] = 'leef';
@@ -334,26 +403,33 @@ world.rock = function(line, col) {
         world.matrix[line][col] = 'rock';
 }
 
-//console.log("this is a modification");
-
 //Draw water
 world.water = function(line, col){
         world.matrix[line][col] = 'water';
 }
 
-
-
-function play() {
-    $('#myModal').modal('hide');
-};
-
 function Tuto() {
-    $('#myModal').modal('hide');
+   // $('#myModal').modal('hide');
     $("#myModalTuto").modal('show');
 };
-
 function home() {
     $('#myModal').modal('show');
+}
+
+world.reset = function() {
+    for (var x = 0; x < 20; x++) {
+        for (var y = 0; y < 20; y++){
+                world.matrix[x][y] = "";
+            }
+    }
+    world.updateBoard();
+    if (selectedWorld === 'winter') {
+        playWinter();
+        }
+        else if (selectedWorld === 'spring')
+            {
+            playSpring()
+            }
 }
 
 
@@ -365,22 +441,56 @@ $(window).on('load',function () {
     $('#myModal').modal('show');
 });
 
-world.dirt();
-world.cloud(5,5);
-world.cloud(3,15);
-world.tree(15, 14)
-world.bush(4);
-world.rock(15, 0);
-world.rock(15, 10);
-world.rock(15, 1);
-world.sun();
-world.water(16, 18);
-world.water(16, 19);
-world.water(17, 19);
-world.water(17, 18);
-world.water(16, 17);
-world.water(18, 19);
-
-world.updateBoard();
 })
+
+
+function playSpring() {
+    $('#myModal').modal('hide');
+    selectedWorld = 'spring';
+    world.dirt();
+    world.cloud(5,5);
+    world.cloud(3,15);
+    world.tree(15, 14)
+    world.bush(4);
+    world.rock(15, 0);
+    world.rock(15, 10);
+    world.rock(15, 1);
+    world.sun();
+    world.water(16, 18);
+    world.water(16, 19);
+    world.water(17, 19);
+    world.water(17, 18);
+    world.water(16, 17);
+    world.water(18, 19);
+    world.updateBoard();
+};
+
+function playWinter() {
+    $('#myModal').modal('hide');
+    selectedWorld = 'winter';
+    world.dirt();
+    world.cloud(2,2);
+    world.cloud(4,1);
+    world.cloud(3,5);
+    world.cloud(5,1);
+    world.cloud(3,6);
+    world.cloud(4,8);
+    world.cloud(4,10);
+    world.cloud(5,14);
+    world.cloud(6,16);
+    world.cloud(5,18);
+    world.cloud(5,5);
+    world.cloud(3,16);
+    world.sapin(15, 14);
+    world.sapin(15, 3);
+    world.rock(15,18);
+    world.rock(15,19);
+    world.rock(14,19);
+    world.rock(16,8);
+    world.rock(16,11);
+    world.water(16,9);
+    world.water(16,10);
+    world.updateBoard();
+
+};
 
